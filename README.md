@@ -1,31 +1,21 @@
-[![Build Status](https://travis-ci.org/microservices-demo/microservices-demo.svg?branch=master)](https://travis-ci.org/microservices-demo/microservices-demo)
+![image](https://user-images.githubusercontent.com/45846027/127533751-06e6ff17-4598-4404-91bb-532e422ec1b8.png)
 
-# Sock Shop : A Microservice Demo Application
 
-The application is the user-facing part of an online shop that sells socks. It is intended to aid the demonstration and testing of microservice and cloud native technologies.
+#### terraform init --upgrade=true
+#### terraform plan
+#### terraform apply --auto-approve    ---> This may take 10 mins to complete
 
-It is built using [Spring Boot](http://projects.spring.io/spring-boot/), [Go kit](http://gokit.io) and [Node.js](https://nodejs.org/) and is packaged in Docker containers.
+## Configure kubectl on local terraform box
 
-You can read more about the [application design](./internal-docs/design.md).
+  * echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+  * curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  * sudo apt-get update ; clear
+  * sudo apt-get install -y kubectl
 
-## Deployment Platforms
+## Run the following command to retrieve the access credentials for your cluster and automatically configure kubectl.
+  ####  aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output -raw cluster_name)
+  ####  kubectl get nodes 
+  ####  kubectl get pods --all-namespaces
+  
 
-The [deploy folder](./deploy/) contains scripts and instructions to provision the application onto your favourite platform. 
 
-Please let us know if there is a platform that you would like to see supported.
-
-## Bugs, Feature Requests and Contributing
-
-We'd love to see community contributions. We like to keep it simple and use Github issues to track bugs and feature requests and pull requests to manage contributions. See the [contribution information](.github/CONTRIBUTING.md) for more information.
-
-## Screenshot
-
-![Sock Shop frontend](https://github.com/microservices-demo/microservices-demo.github.io/raw/master/assets/sockshop-frontend.png)
-
-## Visualizing the application
-
-Use [Weave Scope](http://weave.works/products/weave-scope/) or [Weave Cloud](http://cloud.weave.works/) to visualize the application once it's running in the selected [target platform](./deploy/).
-
-![Sock Shop in Weave Scope](https://github.com/microservices-demo/microservices-demo.github.io/raw/master/assets/sockshop-scope.png)
-
-## 
