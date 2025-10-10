@@ -1,4 +1,4 @@
-FROM alpine:3.12.0 AS runtime
+FROM alpine:3.22.2 AS runtime
 
 RUN apk add bash make
 
